@@ -25,13 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-with instance_create(x-16,y,objGround) {
-    x = x*16/16
-}
-with instance_create(x+16,y,objWater) {
-    x = x*16/16
-}
+            <string>randomize()
+instance_create(x,y,objGround)
+instance_create(x,y,objWater)
 
 alarm[0] = 600
 room_speed = 120
@@ -75,6 +71,9 @@ for(i=0;i&lt;room_width+16;i+=16) {
 }
 with instance_find(objGroundSpot,irandom(instance_number(objGroundSpot))) {
     instance_create(x,y,objPlayer)
+}
+with instance_find(objGroundSpot,irandom(instance_number(objGroundSpot))) {
+    instance_create(x,y,objCompass)
 }
 
 if irandom(1) &gt; 0 {

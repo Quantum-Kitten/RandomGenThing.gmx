@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>light = 10
+compass = 0
 instance_create(x,y,objLamp)
 </string>
           </argument>
@@ -50,7 +51,7 @@ instance_create(x,y,objLamp)
           <argument>
             <kind>1</kind>
             <string>if keyboard_check_pressed(ord('A')) {
-    if place_free(x-16,y) &amp;&amp; x - 16 &gt; 0 {
+    if place_free(x-16,y) &amp;&amp; x - 16 &gt; -16 {
         x -= 16
         light -= 1
         if place_meeting(x,y,objWaterSpot) {
@@ -59,7 +60,7 @@ instance_create(x,y,objLamp)
     }
 }
 if keyboard_check_pressed(ord('D')) {
-    if place_free(x+16,y) &amp;&amp; x + 16 &lt; room_width {
+    if place_free(x+16,y) &amp;&amp; x + 16 &lt; room_width+16 {
         x += 16
         light -= 1
         if place_meeting(x,y,objWaterSpot) {
@@ -68,7 +69,7 @@ if keyboard_check_pressed(ord('D')) {
     }
 }
 if keyboard_check_pressed(ord('W')) {
-    if place_free(x,y-16) &amp;&amp; y - 16 &gt; 0 {
+    if place_free(x,y-16) &amp;&amp; y - 16 &gt; -16 {
         y -= 16
         light -= 1
         if place_meeting(x,y,objWaterSpot) {
@@ -77,7 +78,7 @@ if keyboard_check_pressed(ord('W')) {
     }
 }
 if keyboard_check_pressed(ord('S')) {
-    if place_free(x,y+16) &amp;&amp; y + 16 &lt; room_height {
+    if place_free(x,y+16) &amp;&amp; y + 16 &lt; room_height+16 {
         y += 16
         light -= 1
         if place_meeting(x,y,objWaterSpot) {
@@ -85,7 +86,7 @@ if keyboard_check_pressed(ord('S')) {
         }
     }
 }
-if light &lt;= 0 {
+if light &lt; 0 {
     instance_destroy()
 }
 
@@ -139,6 +140,9 @@ with other {
             <kind>1</kind>
             <string>draw_self()
 draw_text(x-12,y-12,light)
+if compass = 1 {
+   draw_sprite_ext(sprArrow,0,x,y,1,1,point_direction(x,y,objExit.x,objExit.y),c_white,1)
+}
 </string>
           </argument>
         </arguments>
