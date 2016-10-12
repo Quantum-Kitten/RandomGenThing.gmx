@@ -26,17 +26,24 @@
           <argument>
             <kind>1</kind>
             <string>if instance_exists(objPlayer) {
-    if distance_to_object(objPlayer) &lt;= 32 {
+    if distance_to_object(objPlayer) &lt;= 48 &amp;&amp; objPlayer.light &gt;= 50 {
+        visible = false
+    } 
+    else if distance_to_object(objPlayer) &lt;= 32 &amp;&amp; objPlayer.light &lt; 50 {
         if objPlayer.light &gt; 5 { 
         visible = false
-        image_alpha = 1
+        image_alpha = 0.85
         } else {
         visible = true
-        image_alpha = 0.5
+        image_alpha = 0.85
         }
+    } 
+
+    else if place_meeting(x,y,objFireFly) {
+            visible = false
     } else {
         visible = true
-        image_alpha = 1
+
     }
 }
 </string>

@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>sprWater</maskName>
   <events>
@@ -28,9 +28,10 @@
             <string>randomize()
 instance_create(x,y,objGround)
 instance_create(x,y,objWater)
-
 alarm[0] = 600
 room_speed = 120
+global.points = 0
+global.flr = 0
 </string>
           </argument>
         </arguments>
@@ -85,8 +86,45 @@ if irandom(1) &gt; 0 {
         instance_create(x,y,objExit)
     }   
 }
+if instance_number(objLamp) &lt; instance_number(objGroundSpot)/20 { 
+    with instance_find(objGroundSpot,irandom(instance_number(objGroundSpot))) {
+        if !place_meeting(x,y,objLamp) {
+            instance_create(x,y,objLamp)
+        }
+    }
+}
 room_speed = 30
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if global.points != 0 {
+    room_width += 16
+    room_height += 16
+    instance_create(x,y,objGround)
+    instance_create(x,y,objWater)
+    alarm[0] = 600 + global.flr * 30
+    room_speed = 120
+}
 </string>
           </argument>
         </arguments>
@@ -114,6 +152,9 @@ if alarm[0] &gt; 1 {
     draw_set_color(c_white)
     draw_text(room_width/2-96,room_height/2-12,"Generating...")
 }
+draw_text_ext(4,16,global.points,3,300)
+draw_text(4,28,"Floor: " + string(global.flr))
+
 </string>
           </argument>
         </arguments>

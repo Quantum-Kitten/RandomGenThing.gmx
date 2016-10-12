@@ -16,6 +16,8 @@
     <sprite>sprites\sprGoblin</sprite>
     <sprite>sprites\sprCompass</sprite>
     <sprite>sprites\sprArrow</sprite>
+    <sprite>sprites\sprFireFly</sprite>
+    <sprite>sprites\sprWalk</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -31,6 +33,8 @@
     <object>objects\objExit</object>
     <object>objects\objFog</object>
     <object>objects\objLamp</object>
+    <object>objects\objFireFly</object>
+    <object>objects\objWalk</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmGen</room>

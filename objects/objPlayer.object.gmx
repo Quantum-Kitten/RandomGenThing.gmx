@@ -57,6 +57,10 @@ instance_create(x,y,objLamp)
         if place_meeting(x,y,objWaterSpot) {
             light -= 1
         }
+        if compass &gt; 0 {
+            compass -= 1
+        }
+        global.points += 1
     }
 }
 if keyboard_check_pressed(ord('D')) {
@@ -66,6 +70,10 @@ if keyboard_check_pressed(ord('D')) {
         if place_meeting(x,y,objWaterSpot) {
             light -= 1
         }
+        if compass &gt; 0 {
+            compass -= 1
+        }
+        global.points += 1
     }
 }
 if keyboard_check_pressed(ord('W')) {
@@ -75,6 +83,10 @@ if keyboard_check_pressed(ord('W')) {
         if place_meeting(x,y,objWaterSpot) {
             light -= 1
         }
+        if compass &gt; 0 {
+            compass -= 1
+        }
+        global.points += 1
     }
 }
 if keyboard_check_pressed(ord('S')) {
@@ -84,12 +96,25 @@ if keyboard_check_pressed(ord('S')) {
         if place_meeting(x,y,objWaterSpot) {
             light -= 1
         }
+        if compass &gt; 0 {
+            compass -= 1
+        }
+        global.points += 1
     }
 }
 if light &lt; 0 {
     instance_destroy()
+    with objFog {
+        if place_meeting(x,y,objExit) {
+            instance_destroy()
+        }
+    }
 }
-
+if xprevious != x ^^ yprevious != y {
+    if place_meeting(x,y,objFireFly) {
+        light += 1
+    }
+} 
 </string>
           </argument>
         </arguments>
