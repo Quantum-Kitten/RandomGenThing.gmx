@@ -29,8 +29,11 @@
 if random(1) &gt; 0.96 {
     instance_create(x,y,objLamp)
 }
-if random(1) &gt; 0.99 {
+if random(1) &gt; 0.985 {
     instance_create(x,y,objFireFly)
+}
+/**if random(1) &gt; 0.98 &amp;&amp; global.flr &gt;= 4 {
+    instance_create(x,y,objGoblin)
 }
 </string>
           </argument>
